@@ -13,6 +13,10 @@ import { ScreenContainer } from "@/components/ui/ScreenContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { TextField } from "@/components/ui/TextField";
+import {
+  AuthDivider,
+  SocialAuthButtons,
+} from "@/components/auth/SocialAuthButtons";
 import { colors } from "@/constants/colors";
 
 export default function SignUp() {
@@ -64,7 +68,7 @@ export default function SignUp() {
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer scroll>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         className="flex-1"
@@ -104,6 +108,10 @@ export default function SignUp() {
               title="Create your account"
               subtitle="Start organizing your bookings in minutes."
             />
+
+            <SocialAuthButtons onError={setError} />
+            <AuthDivider />
+
             <TextField
               label="Email"
               value={email}

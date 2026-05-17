@@ -13,6 +13,10 @@ import { ScreenContainer } from "@/components/ui/ScreenContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { TextField } from "@/components/ui/TextField";
+import {
+  AuthDivider,
+  SocialAuthButtons,
+} from "@/components/auth/SocialAuthButtons";
 import { colors } from "@/constants/colors";
 
 export default function SignIn() {
@@ -45,7 +49,7 @@ export default function SignIn() {
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer scroll>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         className="flex-1"
@@ -58,6 +62,9 @@ export default function SignIn() {
           title="Welcome back"
           subtitle="Sign in to your Appointly account."
         />
+
+        <SocialAuthButtons onError={setError} />
+        <AuthDivider />
 
         <TextField
           label="Email"
