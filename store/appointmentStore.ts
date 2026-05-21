@@ -10,6 +10,7 @@ type AppointmentState = {
   setStatus: (id: string, status: AppointmentStatus) => void;
   removeAppointment: (id: string) => void;
   getAppointment: (id: string) => Appointment | undefined;
+  reset: () => void;
 };
 
 export const useAppointmentStore = create<AppointmentState>()(
@@ -41,6 +42,7 @@ export const useAppointmentStore = create<AppointmentState>()(
           appointments: state.appointments.filter((a) => a.id !== id),
         })),
       getAppointment: (id) => get().appointments.find((a) => a.id === id),
+      reset: () => set({ appointments: [] }),
     }),
     {
       name: "appointly.appointments",

@@ -7,6 +7,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
 import { Text, View } from "react-native";
 import { tokenCache } from "@/lib/tokenCache";
+import { HydrationGate } from "@/components/HydrationGate";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -34,7 +35,9 @@ export default function RootLayout() {
       <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
         <SafeAreaProvider>
           <StatusBar style="dark" />
-          <Slot />
+          <HydrationGate>
+            <Slot />
+          </HydrationGate>
         </SafeAreaProvider>
       </ClerkProvider>
     </GestureHandlerRootView>

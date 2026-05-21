@@ -14,6 +14,7 @@ import { useOnboardingDraft } from "@/store/onboardingDraftStore";
 import { useUserStore } from "@/store/userStore";
 import { useServiceStore } from "@/store/serviceStore";
 import { useAvailabilityStore } from "@/store/availabilityStore";
+import { usePreferencesStore } from "@/store/preferencesStore";
 import { randomId } from "@/utils/id";
 import { colors } from "@/constants/colors";
 import { cn } from "@/lib/cn";
@@ -123,7 +124,7 @@ export default function AvailabilityScreen() {
         (`${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || ""),
       businessName,
       profession,
-      currency: "EUR",
+      currency: usePreferencesStore.getState().currency,
       createdAt: now,
       updatedAt: now,
     });

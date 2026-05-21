@@ -9,6 +9,7 @@ type ServiceState = {
   updateService: (id: string, patch: Partial<Service>) => void;
   removeService: (id: string) => void;
   getService: (id: string) => Service | undefined;
+  reset: () => void;
 };
 
 export const useServiceStore = create<ServiceState>()(
@@ -30,6 +31,7 @@ export const useServiceStore = create<ServiceState>()(
           services: state.services.filter((s) => s.id !== id),
         })),
       getService: (id) => get().services.find((s) => s.id === id),
+      reset: () => set({ services: [] }),
     }),
     {
       name: "appointly.services",

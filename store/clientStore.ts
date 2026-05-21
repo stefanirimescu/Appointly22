@@ -9,6 +9,7 @@ type ClientState = {
   updateClient: (id: string, patch: Partial<Client>) => void;
   removeClient: (id: string) => void;
   getClient: (id: string) => Client | undefined;
+  reset: () => void;
 };
 
 export const useClientStore = create<ClientState>()(
@@ -30,6 +31,7 @@ export const useClientStore = create<ClientState>()(
           clients: state.clients.filter((c) => c.id !== id),
         })),
       getClient: (id) => get().clients.find((c) => c.id === id),
+      reset: () => set({ clients: [] }),
     }),
     {
       name: "appointly.clients",
