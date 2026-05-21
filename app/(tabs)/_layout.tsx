@@ -9,9 +9,11 @@ import {
 } from "lucide-react-native";
 import { ActivityIndicator, View } from "react-native";
 import { colors } from "@/constants/colors";
+import { useUserStore } from "@/store/userStore";
 
 export default function TabsLayout() {
   const { isLoaded, isSignedIn } = useAuth();
+  const profile = useUserStore((s) => s.profile);
 
   if (!isLoaded) {
     return (
@@ -23,6 +25,10 @@ export default function TabsLayout() {
 
   if (!isSignedIn) {
     return <Redirect href="/(auth)/welcome" />;
+  }
+
+  if (!profile) {
+    return <Redirect href="/(onboarding)/choose-profession" />;
   }
 
   return (
